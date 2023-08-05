@@ -1,12 +1,12 @@
 import axios from 'axios'
 import 'logging-starter'
-import type {GetRequest, PostRequest} from './types/webclient'
+import type {GetRequest, PostRequest} from '../types/webclient'
 import * as querystring from 'querystring'
 
 const createUrl = (
   baseUrl: string,
   path: string,
-  queryParams: Record<string, string> = {},
+  queryParams: Record<string, string | number> = {},
   uriVariables: Record<string, number | string> = {}
 ): string => {
   const url = baseUrl.concat(path)
@@ -48,7 +48,7 @@ const get = <ReturnType>({
 const post = <ReturnType>({
   baseUrl,
   path,
-  body,
+  body = {},
   queryParams,
   uriVariables,
   headers = {},

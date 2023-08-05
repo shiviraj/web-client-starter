@@ -128,7 +128,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: "**/*/webclient.ts",
+      files: "**/*/index.ts",
       rules: {
         "@typescript-eslint/no-unsafe-assignment": "off",
         "@typescript-eslint/no-explicit-any": "off"
