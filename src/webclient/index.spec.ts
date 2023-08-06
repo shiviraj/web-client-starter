@@ -35,7 +35,7 @@ describe('WebClient Test', () => {
 
     expect(response).toStrictEqual('data')
     expect(axios.post).toHaveBeenCalledTimes(1)
-    expect(axios.post).toHaveBeenCalledWith('baseUrl/path', {headers: {}, body: '{}'})
+    expect(axios.post).toHaveBeenCalledWith('baseUrl/path', undefined, {headers: {}})
     expect(console.log).toHaveBeenCalledTimes(1)
     expect(console.log).toHaveBeenCalledWith(
       '{"timeStamp":"2023-01-01T00:00:00.000Z","message":"Successfully get POST API response","data":"{\\"parameter\\":\\"data\\"}","additionalData":{"baseUrl":"baseUrl","path":"/path","headers":{},"skipLoggingResponseBody":false},"label":"INFO"}'
@@ -51,7 +51,7 @@ describe('WebClient Test', () => {
 
     expect(response).toStrictEqual('data')
     expect(axios.put).toHaveBeenCalledTimes(1)
-    expect(axios.put).toHaveBeenCalledWith('baseUrl/path/1', {headers: {}})
+    expect(axios.put).toHaveBeenCalledWith('baseUrl/path/1', undefined, {headers: {}})
     expect(console.log).toHaveBeenCalledTimes(1)
     expect(console.log).toHaveBeenCalledWith(
       '{"timeStamp":"2023-01-01T00:00:00.000Z","message":"Successfully get PUT API response","data":"{\\"parameter\\":\\"data\\"}","additionalData":{"baseUrl":"baseUrl","path":"/path/{page}","uriVariables":{"page":1},"headers":{},"skipLoggingResponseBody":false},"label":"INFO"}'
@@ -67,7 +67,7 @@ describe('WebClient Test', () => {
 
     expect(response).toStrictEqual('data')
     expect(axios.patch).toHaveBeenCalledTimes(1)
-    expect(axios.patch).toHaveBeenCalledWith('baseUrl/path', {headers: {}})
+    expect(axios.patch).toHaveBeenCalledWith('baseUrl/path', undefined, {headers: {}})
     expect(console.log).toHaveBeenCalledTimes(1)
     expect(console.log).toHaveBeenCalledWith(
       '{"timeStamp":"2023-01-01T00:00:00.000Z","message":"Successfully get PATCH API response","data":"{\\"parameter\\":\\"data\\"}","additionalData":{"baseUrl":"baseUrl","path":"/path","headers":{},"skipLoggingResponseBody":false},"label":"INFO"}'
@@ -129,10 +129,13 @@ describe('WebClient Test', () => {
 
     expect(response).toStrictEqual('data')
     expect(axios.post).toHaveBeenCalledTimes(1)
-    expect(axios.post).toHaveBeenCalledWith('baseUrl/path?page=1', {
-      headers: {'Content-Type': 'plain/text'},
-      body: '{"data":"body"}'
-    })
+    expect(axios.post).toHaveBeenCalledWith(
+      'baseUrl/path?page=1',
+      {data: 'body'},
+      {
+        headers: {'Content-Type': 'plain/text'}
+      }
+    )
     expect(console.log).toHaveBeenCalledTimes(1)
     expect(console.log).toHaveBeenCalledWith(
       '{"timeStamp":"2023-01-01T00:00:00.000Z","message":"Successfully get POST API response","data":"{}","additionalData":{"baseUrl":"baseUrl","path":"/path","queryParams":{"page":1},"headers":{"Content-Type":"plain/text"},"skipLoggingResponseBody":true},"label":"INFO"}'
@@ -156,10 +159,13 @@ describe('WebClient Test', () => {
 
     expect(response).toStrictEqual('data')
     expect(axios.patch).toHaveBeenCalledTimes(1)
-    expect(axios.patch).toHaveBeenCalledWith('baseUrl/path?page=1', {
-      headers: {'Content-Type': 'plain/text'},
-      body: '{"data":"body"}'
-    })
+    expect(axios.patch).toHaveBeenCalledWith(
+      'baseUrl/path?page=1',
+      {data: 'body'},
+      {
+        headers: {'Content-Type': 'plain/text'}
+      }
+    )
     expect(console.log).toHaveBeenCalledTimes(1)
     expect(console.log).toHaveBeenCalledWith(
       '{"timeStamp":"2023-01-01T00:00:00.000Z","message":"Successfully get PATCH API response","data":"{}","additionalData":{"baseUrl":"baseUrl","path":"/path","queryParams":{"page":1},"headers":{"Content-Type":"plain/text"},"skipLoggingResponseBody":true},"label":"INFO"}'
@@ -183,10 +189,13 @@ describe('WebClient Test', () => {
 
     expect(response).toStrictEqual('data')
     expect(axios.put).toHaveBeenCalledTimes(1)
-    expect(axios.put).toHaveBeenCalledWith('baseUrl/path?page=1', {
-      headers: {'Content-Type': 'plain/text'},
-      body: '{"data":"body"}'
-    })
+    expect(axios.put).toHaveBeenCalledWith(
+      'baseUrl/path?page=1',
+      {data: 'body'},
+      {
+        headers: {'Content-Type': 'plain/text'}
+      }
+    )
     expect(console.log).toHaveBeenCalledTimes(1)
     expect(console.log).toHaveBeenCalledWith(
       '{"timeStamp":"2023-01-01T00:00:00.000Z","message":"Successfully get PUT API response","data":"{}","additionalData":{"baseUrl":"baseUrl","path":"/path","queryParams":{"page":1},"headers":{"Content-Type":"plain/text"},"skipLoggingResponseBody":true},"label":"INFO"}'

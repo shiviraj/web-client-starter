@@ -48,7 +48,7 @@ const get = <ReturnType>({
 const post = <ReturnType>({
   baseUrl,
   path,
-  body = {},
+  body,
   queryParams,
   uriVariables,
   headers = {},
@@ -57,7 +57,7 @@ const post = <ReturnType>({
 }: PostRequest): Promise<ReturnType> => {
   const url = createUrl(baseUrl, path, queryParams, uriVariables)
   return axios
-    .post(url, {headers, body: JSON.stringify(body)})
+    .post(url, body, {headers})
     .then((response) => response.data as ReturnType)
     .logOnSuccess(
       {
@@ -88,7 +88,7 @@ const put = <ReturnType>({
 }: PostRequest): Promise<ReturnType> => {
   const url = createUrl(baseUrl, path, queryParams, uriVariables)
   return axios
-    .put(url, {headers, body: JSON.stringify(body)})
+    .put(url, body, {headers})
     .then((response) => response.data as ReturnType)
     .logOnSuccess(
       {
@@ -119,7 +119,7 @@ const patch = <ReturnType>({
 }: PostRequest): Promise<ReturnType> => {
   const url = createUrl(baseUrl, path, queryParams, uriVariables)
   return axios
-    .patch(url, {headers, body: JSON.stringify(body)})
+    .patch(url, body, {headers})
     .then((response) => response.data as ReturnType)
     .logOnSuccess(
       {
