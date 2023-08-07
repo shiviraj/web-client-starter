@@ -1,6 +1,6 @@
 {
   "name": "web-client-starter",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Webclient starter",
   "types": "lib/index.d.js",
   "main": "lib/index.js",
@@ -50,6 +50,6 @@
   },
   "dependencies": {
     "axios": "^1.4.0",
-    "logging-starter": "^0.0.2"
+    "logging-starter": "^0.0.3"
   }
 }
