@@ -1,4 +1,4 @@
-import axios from 'axios'
+import {api} from './interceptor'
 import 'logging-starter'
 import type {GetRequest, PostRequest} from '../types/webclient'
 import * as querystring from 'querystring'
@@ -27,7 +27,7 @@ const get = <ReturnType>({
   skipLoggingResponseBody = false
 }: GetRequest): Promise<ReturnType> => {
   const url = createUrl(baseUrl, path, queryParams, uriVariables)
-  return axios
+  return api
     .get(url, {headers})
     .then((response) => response.data as ReturnType)
     .logOnSuccess(
@@ -56,7 +56,7 @@ const post = <ReturnType>({
   skipLoggingResponseBody = false
 }: PostRequest): Promise<ReturnType> => {
   const url = createUrl(baseUrl, path, queryParams, uriVariables)
-  return axios
+  return api
     .post(url, body, {headers})
     .then((response) => response.data as ReturnType)
     .logOnSuccess(
@@ -87,7 +87,7 @@ const put = <ReturnType>({
   skipLoggingResponseBody = false
 }: PostRequest): Promise<ReturnType> => {
   const url = createUrl(baseUrl, path, queryParams, uriVariables)
-  return axios
+  return api
     .put(url, body, {headers})
     .then((response) => response.data as ReturnType)
     .logOnSuccess(
@@ -118,7 +118,7 @@ const patch = <ReturnType>({
   skipLoggingResponseBody = false
 }: PostRequest): Promise<ReturnType> => {
   const url = createUrl(baseUrl, path, queryParams, uriVariables)
-  return axios
+  return api
     .patch(url, body, {headers})
     .then((response) => response.data as ReturnType)
     .logOnSuccess(
@@ -147,7 +147,7 @@ const deleteAPI = <ReturnType>({
   skipLoggingResponseBody = false
 }: GetRequest): Promise<ReturnType> => {
   const url = createUrl(baseUrl, path, queryParams, uriVariables)
-  return axios
+  return api
     .delete(url, {headers})
     .then((response) => response.data as ReturnType)
     .logOnSuccess(

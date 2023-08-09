@@ -128,7 +128,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: "**/*/index.ts",
+      files: ["**/*/index.ts", "**/*/interceptor.ts"],
       rules: {
         "@typescript-eslint/no-unsafe-assignment": "off",
         "@typescript-eslint/no-explicit-any": "off"
