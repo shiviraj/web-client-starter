@@ -98,7 +98,7 @@ describe('WebClient Test', () => {
     const response = await get({
       baseUrl: 'baseUrl',
       path: '/path',
-      queryParams: {page: 1},
+      queryParams: {page: '1'},
       headers: {'Content-Type': 'plain/text'},
       skipLoggingResponseBody: true
     })
@@ -121,7 +121,7 @@ describe('WebClient Test', () => {
       baseUrl: 'baseUrl',
       path: '/path',
       body: {data: 'body'},
-      queryParams: {page: 1},
+      queryParams: {page: '1'},
       headers: {'Content-Type': 'plain/text'},
       skipLoggingResponseBody: true,
       skipLoggingRequestBody: true
@@ -151,7 +151,7 @@ describe('WebClient Test', () => {
       baseUrl: 'baseUrl',
       path: '/path',
       body: {data: 'body'},
-      queryParams: {page: 1},
+      queryParams: {page: '1'},
       headers: {'Content-Type': 'plain/text'},
       skipLoggingResponseBody: true,
       skipLoggingRequestBody: true
@@ -181,7 +181,7 @@ describe('WebClient Test', () => {
       baseUrl: 'baseUrl',
       path: '/path',
       body: {data: 'body'},
-      queryParams: {page: 1},
+      queryParams: {page: '1'},
       headers: {'Content-Type': 'plain/text'},
       skipLoggingResponseBody: true,
       skipLoggingRequestBody: true
@@ -210,7 +210,7 @@ describe('WebClient Test', () => {
     const response = await deleteAPI({
       baseUrl: 'baseUrl',
       path: '/path',
-      queryParams: {page: 1},
+      queryParams: {page: '1'},
       headers: {'Content-Type': 'plain/text'},
       skipLoggingResponseBody: true
     })

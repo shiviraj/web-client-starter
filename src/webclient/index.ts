@@ -19,10 +19,12 @@ const createUrl = (
 }
 
 const parseHeaders = (headers: Record<string, string> = {}) => {
-  const keyToRemove = 'Content-Length'
-  if (keyToRemove in headers) {
-    delete headers[keyToRemove]
-  }
+  const keysToRemove = ['Content-Length', 'content-length', 'Content-length']
+  keysToRemove.forEach((keyToRemove) => {
+    if (keyToRemove in headers) {
+      delete headers[keyToRemove]
+    }
+  })
   return headers
 }
 

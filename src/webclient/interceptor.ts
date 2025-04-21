@@ -21,10 +21,9 @@ const interceptor = {
   },
   response(
     onFulfilled?: (value: AxiosResponse) => AxiosResponse | Promise<AxiosResponse>,
-    onRejected?: (error: any) => any,
-    options?: AxiosInterceptorOptions
+    onRejected?: (error: any) => any
   ): void {
-    api.interceptors.response.use(onFulfilled, onRejected, options)
+    api.interceptors.response.use(onFulfilled, onRejected)
   }
 }
 

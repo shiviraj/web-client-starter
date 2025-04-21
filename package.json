@@ -1,6 +1,6 @@
 {
   "name": "web-client-starter",
-  "version": "0.0.7",
+  "version": "0.0.10",
   "description": "Webclient starter",
   "types": "lib/index.d.js",
   "main": "lib/index.js",
