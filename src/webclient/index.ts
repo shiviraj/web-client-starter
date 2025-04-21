@@ -1,21 +1,29 @@
 import {api} from './interceptor'
 import 'logging-starter'
 import type {GetRequest, PostRequest} from '../types/webclient'
-import * as querystring from 'querystring'
 
 const createUrl = (
   baseUrl: string,
   path: string,
-  queryParams: Record<string, string | number> = {},
+  queryParams: string | Record<string, string> | string[][] | URLSearchParams = {},
   uriVariables: Record<string, number | string> = {}
 ): string => {
   const url = baseUrl.concat(path)
   const urlWithPathParams = Object.keys(uriVariables).reduce((url: string, keyName: string) => {
     return url.replace(`{${keyName}}`, uriVariables[keyName] as string)
   }, url)
-  const queryParamsInString = querystring.stringify(queryParams)
+  const params = new URLSearchParams(queryParams)
+  const queryParamsInString = params.toString()
 
   return urlWithPathParams + (queryParamsInString ? `?${queryParamsInString}` : '')
+}
+
+const parseHeaders = (headers: Record<string, string> = {}) => {
+  const keyToRemove = 'Content-Length'
+  if (keyToRemove in headers) {
+    delete headers[keyToRemove]
+  }
+  return headers
 }
 
 const get = <ReturnType>({
@@ -28,7 +36,7 @@ const get = <ReturnType>({
 }: GetRequest): Promise<ReturnType> => {
   const url = createUrl(baseUrl, path, queryParams, uriVariables)
   return api
-    .get(url, {headers})
+    .get(url, {headers: parseHeaders(headers)})
     .then((response) => response.data as ReturnType)
     .logOnSuccess(
       {
@@ -57,7 +65,7 @@ const post = <ReturnType>({
 }: PostRequest): Promise<ReturnType> => {
   const url = createUrl(baseUrl, path, queryParams, uriVariables)
   return api
-    .post(url, body, {headers})
+    .post(url, body, {headers: parseHeaders(headers)})
     .then((response) => response.data as ReturnType)
     .logOnSuccess(
       {
@@ -88,7 +96,7 @@ const put = <ReturnType>({
 }: PostRequest): Promise<ReturnType> => {
   const url = createUrl(baseUrl, path, queryParams, uriVariables)
   return api
-    .put(url, body, {headers})
+    .put(url, body, {headers: parseHeaders(headers)})
     .then((response) => response.data as ReturnType)
     .logOnSuccess(
       {
@@ -119,7 +127,7 @@ const patch = <ReturnType>({
 }: PostRequest): Promise<ReturnType> => {
   const url = createUrl(baseUrl, path, queryParams, uriVariables)
   return api
-    .patch(url, body, {headers})
+    .patch(url, body, {headers: parseHeaders(headers)})
     .then((response) => response.data as ReturnType)
     .logOnSuccess(
       {
@@ -148,7 +156,7 @@ const deleteAPI = <ReturnType>({
 }: GetRequest): Promise<ReturnType> => {
   const url = createUrl(baseUrl, path, queryParams, uriVariables)
   return api
-    .delete(url, {headers})
+    .delete(url, {headers: parseHeaders(headers)})
     .then((response) => response.data as ReturnType)
     .logOnSuccess(
       {
